@@ -1,0 +1,57 @@
+$normalfont: 'Josefin Sans', sans-serif;
+$titlefont: 'Space Mono', monospace;
+
+$fs: 22px; // Website font-size
+$rs: 4; // Responsible size in pixels
+
+$colors: (
+  1: #012E40,
+  2: #05F2F2,
+  3: #F29F05,
+  4: #F27405,
+  5: #A62103,
+  'warning': #FFD147,
+  'error': #EB693B
+);
+
+@function color($num) {
+  @return map-get($colors, $num);
+}
+
+$lightColors: (
+  'bg': #ededed,
+  'text': #333,
+  'border': #333
+);
+
+$darkColors: (
+  'bg': #333,
+  'text': #ededed,
+  'border': #ededed
+);
+
+@function theme($name, $key) {
+  @if ($name == 'light') {
+    @return map-get($lightColors, $key);
+  } @else {
+    @return map-get($darkColors, $key);
+  }
+}
+
+@function white($alpha) { @return rgba(255,255,255,$alpha/10); }
+@function black($alpha) { @return rgba(0,0,0,$alpha/10); }
+
+// Sizes map. Used for breakpoints and classnames.
+$sizes: (
+  's': 576px,
+  'm': 768px,
+  'l': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+);
+
+// Simple function used to get sizes based on the name.
+@function size($name) { @return map-get($sizes, $name); }
+
+// Number of columns used.
+$colnum: 12;

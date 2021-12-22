@@ -1,0 +1,65 @@
+
+$spacer: .5rem;
+
+.center { text-align: center; }
+.left { text-align: left; }
+.right { text-align: right; }
+
+.no-p {
+  padding: 0;
+}
+
+@for $i from 1 through 5 {
+  $val: #{$i * $spacer};
+  %p-#{$i}, .p-#{$i} { padding: $val }
+  %pt-#{$i}, .pt-#{$i} { padding-top: $val }
+  %pr-#{$i}, .pr-#{$i} { padding-right: $val }
+  %pb-#{$i}, .pb-#{$i} { padding-bottom: $val }
+  %pl-#{$i}, .pl-#{$i} { padding-left: $val }
+  %py-#{$i}, .py-#{$i} { padding-top: $val; padding-bottom: $val }
+  %px-#{$i}, .px-#{$i} { padding-right: $val; padding-left: $val }
+
+  %m-#{$i}, .m-#{$i} { margin: $val }
+  %mt-#{$i}, .mt-#{$i} { margin-top: $val }
+  %mr-#{$i}, .mr-#{$i} { margin-right: $val }
+  %mb-#{$i}, .mb-#{$i} { margin-bottom: $val }
+  %ml-#{$i}, .ml-#{$i} { margin-left: $val }
+  %my-#{$i}, .my-#{$i} { margin-top: $val; margin-bottom: $val }
+  %mx-#{$i}, .mx-#{$i} { margin-right: $val; margin-left: $val }
+}
+
+%txt-l, .txt-l { text-align: left }
+%txt-r, .txt-r { text-align: right }
+%txt-c, .txt-c { text-align: center }
+%txt-j, .txt-j { text-align: justify }
+%txt-nowrap, .txt-nowrap { white-space: nowrap }
+
+%va-top, .va-top { vertical-align: top }
+%va-middle, .va-middle { vertical-align: middle }
+%va-bottom, .va-bottom { vertical-align: bottom }
+%va-baseline, .va-baseline { vertical-align: baseline }
+%va-sub, .va-sub { vertical-align: sub }
+%va-super, .va-super { vertical-align: super }
+%va-texttop, .va-texttop { vertical-align: text-top }
+%va-textbottom, .va-textbottom { vertical-align: text-bottom }
+
+.b {
+  border: 1px solid
+}
+
+$zindexes: (
+  'background': 0,
+  'splash': 1,
+  'content': 2,
+  'menu': 3,
+  'overlay': 4,
+  'top': 5
+);
+
+@function zindex($name) {
+  @return map-get($zindexes, $name)
+}
+
+@each $name, $index in $zindexes {
+  %zi-#{$name},.zi-#{$name} { z-index: $index }
+}

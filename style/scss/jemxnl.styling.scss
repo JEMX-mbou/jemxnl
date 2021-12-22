@@ -1,0 +1,7 @@
+@import 'imports/_vars';
+@import 'imports/_mixins';
+
+div.masthead {
+  height: calc(100vh - 5.5rem);
+  margin: 5.5rem 0 0 0;
+}

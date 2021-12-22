@@ -1,0 +1,14 @@
+@import 'imports/_vars';
+
+@each $name, $hex in $colors {
+  %txt-#{$name},.txt-#{$name} { color: $hex }
+  %bg-#{$name},.bg-#{$name} { background-color: $hex }
+}
+
+@for $i from 0 to 9 {
+  %bg-white-#{$i}, .bg-white-#{$i} { background-color: white($i)!important }
+  %txt-white-#{$i}, .txt-white-#{$i} { color: white($i)!important }
+
+  %bg-black-#{$i}, .bg-black-#{$i} { background-color: black($i)!important }
+  %txt-black-#{$i}, .txt-black-#{$i} { color: black($i)!important }
+}

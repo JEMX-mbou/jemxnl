@@ -19,6 +19,43 @@
     <?php include 'includes/menu.php' ?>
     <!-- end navbar -->
 
+      <div class="masthead">
+        <div class="content">
+          <h2>Tutorials</h2>
+        </div>
+      </div>
+
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-s-12 col-m-6 col-l-3">
+              <div class="card">
+                <h3>HTML</h3>
+              </div>
+            </div>
+            <div class="col-s-12 col-m-6 col-l-3">
+              <div class="card">
+                <h3>CSS</h3>
+              </div>
+            </div>
+            <div class="col-s-12 col-m-6 col-l-3">
+              <div class="card">
+                <h3>SCSS</h3>
+              </div>
+            </div>
+            <div class="col-s-12 col-m-6 col-l-3">
+              <div class="card">
+                <h3>javascript</h3>
+              </div>
+            </div>
+            <div class="col-s-12 col-m-6 col-l-3">
+              <div class="card">
+                <h3>PHP</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
     <!-- start footer -->
     <?php include 'includes/footer.php' ?>

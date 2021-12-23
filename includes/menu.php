@@ -1,12 +1,12 @@
 <?php require_once 'menu-structure.php'; ?>
 
-<nav class="center v-center mob-m">
+<nav class="dark center bg-2 mob-m">
   <div class="menu-icon">
     <div class="inner"></div>
   </div>
   <div class="container">
-    <div class="logo"><?=svg('jemx-light-logo')?></div>
-    <div class="menu mob-side mob-full">
+    <div class="logo"><?=svg('jemx-dark-logo')?></div>
+    <div class="menu mob-top">
       <?=generate_menu()?>
     </div>
   </div>

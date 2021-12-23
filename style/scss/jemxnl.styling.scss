@@ -1,9 +1,12 @@
 @import 'imports/_vars';
 @import 'imports/_mixins';
 
-div.masthead {
-  margin-top: 5rem;
+div.masthead,
+div.carousel {
+  height: calc(100vh - 5.5rem);
+  margin-top: 5.5rem;
   @media screen and (max-width: size('m')) {
+    height: calc(100vh - 3rem);
     margin-top: 3rem;
   }
 }

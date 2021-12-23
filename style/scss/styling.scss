@@ -7,12 +7,30 @@
 
 html {
   font-size: $fs;
-  $ms: nth(map-values($sizes), length($sizes));
-  @each $s, $sw in $sizes {
-    @media screen and (min-width: $sw) {
-      font-size: round($fs - ($rs - ($sw / $ms) * $rs));
+  // Get Max Size (ms) from sizes map;
+
+
+
+  // @media screen and (min-width: 320px) {
+  //   background-color: red;
+  //   font-size: 20px;
+  // }
+}
+$ms: nth(map-values($sizes), length($sizes));
+@each $s, $sw in $sizes {
+  @if type-of($lastWidth) == 'undefined' {
+    $lastWidth: null;
+  }
+  @if $lastWidth == null {
+    @media screen and (max-width: $sw) {
+      html { font-size: round($fs - ($rs - ($sw / $ms) * $rs)); }
+    }
+  } @else {
+    @media screen and (min-width: $lastWidth) and (max-width: $sw) {
+      html { font-size: round($fs - ($rs - ($sw / $ms) * $rs)); }
     }
   }
+  $lastWidth: $sw;
 }
 
 body {

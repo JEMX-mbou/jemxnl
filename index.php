@@ -21,9 +21,9 @@
 
     <div class="masthead">
       <img src="images/banner.png" alt="Welcome to JEMX.nl">
-      <div class="content">
-        <h2 class="txt-white-9">Tutorials and Snippets</h2>
-        <p>You thought you'd forget. But here they are.</p>
+      <div class="content txt-white bg-transparent">
+        <h2 class="txt-shadow txt-grey-3">Tutorials and Snippets</h2>
+        <p class="txt-small-shadow">You thought you'd forget. But here they are.</p>
       </div>
     </div>
 

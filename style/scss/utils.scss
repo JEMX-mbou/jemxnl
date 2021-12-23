@@ -1,38 +1,44 @@
+@import 'imports/_mixins';
+@import 'imports/_vars';
 
 $spacer: .5rem;
-
-.center { text-align: center; }
-.left { text-align: left; }
-.right { text-align: right; }
 
 .no-p {
   padding: 0;
 }
 
-@for $i from 1 through 5 {
-  $val: #{$i * $spacer};
-  %p-#{$i}, .p-#{$i} { padding: $val }
-  %pt-#{$i}, .pt-#{$i} { padding-top: $val }
-  %pr-#{$i}, .pr-#{$i} { padding-right: $val }
-  %pb-#{$i}, .pb-#{$i} { padding-bottom: $val }
-  %pl-#{$i}, .pl-#{$i} { padding-left: $val }
-  %py-#{$i}, .py-#{$i} { padding-top: $val; padding-bottom: $val }
-  %px-#{$i}, .px-#{$i} { padding-right: $val; padding-left: $val }
+@mixin pm_generator($type, $num, $val) {
+  $abbr: '';
+  @if $type == 'padding' {
+    $abbr: 'p';
+  } @else if $type == 'margin' {
+    $abbr: 'm';
+  }
 
-  %m-#{$i}, .m-#{$i} { margin: $val }
-  %mt-#{$i}, .mt-#{$i} { margin-top: $val }
-  %mr-#{$i}, .mr-#{$i} { margin-right: $val }
-  %mb-#{$i}, .mb-#{$i} { margin-bottom: $val }
-  %ml-#{$i}, .ml-#{$i} { margin-left: $val }
-  %my-#{$i}, .my-#{$i} { margin-top: $val; margin-bottom: $val }
-  %mx-#{$i}, .mx-#{$i} { margin-right: $val; margin-left: $val }
+  %#{$abbr}-#{$num}, .#{$abbr}-#{$num} { #{$type}: $val!important }
+  %#{$abbr}t-#{$num}, .#{$abbr}t-#{$num} { #{$type}-top: $val!important }
+  %#{$abbr}r-#{$num}, .#{$abbr}r-#{$num} { #{$type}-right: $val!important }
+  %#{$abbr}b-#{$num}, .#{$abbr}b-#{$num} { #{$type}-bottom: $val!important }
+  %#{$abbr}l-#{$num}, .#{$abbr}l-#{$num} { #{$type}-left: $val!important }
+  %#{$abbr}y-#{$num}, .#{$abbr}y-#{$num} { #{$type}-top: $val!important; #{$type}-bottom: $val!important }
+  %#{$abbr}x-#{$num}, .#{$abbr}x-#{$num} { #{$type}-right: $val!important; #{$type}-left: $val!important }
 }
 
-%txt-l, .txt-l { text-align: left }
-%txt-r, .txt-r { text-align: right }
-%txt-c, .txt-c { text-align: center }
-%txt-j, .txt-j { text-align: justify }
+@for $i from 1 through 10 {
+  $val: #{ $i * $spacer };
+  @include pm_generator('padding', $i, $val);
+  @include pm_generator('margin', $i, $val);
+}
+
+%txt-l, .txt-l, .left { text-align: left }
+%txt-r, .txt-r, .right { text-align: right }
+%txt-c, .txt-c, .center { text-align: center }
+%txt-j, .txt-j, .justify { text-align: justify }
 %txt-nowrap, .txt-nowrap { white-space: nowrap }
+
+%txt-small-shadow, .txt-small-shadow { @include text-shadow($ver: .1rem, $blur: .1rem, $color: black(5)); }
+%txt-shadow, .txt-shadow { @include text-shadow($ver: .2rem, $blur: .3rem, $color: black(5)); }
+%txt-big-shadow, .txt-big-shadow { @include text-shadow($ver: .3rem, $blur: .7rem, $color: black(8)); }
 
 %va-top, .va-top { vertical-align: top }
 %va-middle, .va-middle { vertical-align: middle }

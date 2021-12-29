@@ -3,6 +3,17 @@
 
 $spacer: .5rem;
 
+@for $i from 1 through 20 {
+  $val: $i * 5;
+  .vh-#{$val} { height: #{$val * 1vh}!important; }
+  .h-#{$val} { height: #{$val * 1%}!important; }
+  .vw-#{$val} { width: #{$val * 1vw}!important; }
+  .w-#{$val} { width: #{$val * 1%}!important; }
+}
+
+@for $i from 1 through 10 {
+  .o-#{$i * 10} { opacity: #{$i / 10}!important; }
+}
 .no-p {
   padding: 0;
 }
@@ -24,7 +35,7 @@ $spacer: .5rem;
   %#{$abbr}x-#{$num}, .#{$abbr}x-#{$num} { #{$type}-right: $val!important; #{$type}-left: $val!important }
 }
 
-@for $i from 1 through 10 {
+@for $i from 0 through 10 {
   $val: #{ $i * $spacer };
   @include pm_generator('padding', $i, $val);
   @include pm_generator('margin', $i, $val);
@@ -36,9 +47,10 @@ $spacer: .5rem;
 %txt-j, .txt-j, .justify { text-align: justify }
 %txt-nowrap, .txt-nowrap { white-space: nowrap }
 
-%txt-small-shadow, .txt-small-shadow { @include text-shadow($ver: .1rem, $blur: .1rem, $color: black(5)); }
-%txt-shadow, .txt-shadow { @include text-shadow($ver: .2rem, $blur: .3rem, $color: black(5)); }
-%txt-big-shadow, .txt-big-shadow { @include text-shadow($ver: .3rem, $blur: .7rem, $color: black(8)); }
+.txt-shadow-small { @include text-shadow($ver: .1rem, $blur: .1rem, $color: black(5)); }
+.txt-shadow { @include text-shadow($ver: .2rem, $blur: .3rem, $color: black(5)); }
+.txt-shadow-big { @include text-shadow($ver: .3rem, $blur: .7rem, $color: black(8)); }
+.txt-shadow-none { text-shadow: none; }
 
 %va-top, .va-top { vertical-align: top }
 %va-middle, .va-middle { vertical-align: middle }
@@ -49,8 +61,20 @@ $spacer: .5rem;
 %va-texttop, .va-texttop { vertical-align: text-top }
 %va-textbottom, .va-textbottom { vertical-align: text-bottom }
 
-.b {
-  border: 1px solid
+[class^="b-"],
+[class*=" b-"] {
+  border-style: solid;
+}
+
+@for $i from 1 through 5 {
+  $val: #{$i}px;
+  .b-#{$i} { border-width: $val; }
+  .bt-#{$i} { border-top-width: $val; }
+  .br-#{$i} { border-right-width: $val; }
+  .bb-#{$i} { border-bottom-width: $val; }
+  .bl-#{$i} { border-left-width: $val; }
+  .by-#{$i} { border-width: $val 0 $val 0; }
+  .bx-#{$i} { border-width: 0 $val 0 $val; }
 }
 
 $zindexes: (
@@ -62,9 +86,7 @@ $zindexes: (
   'top': 5
 );
 
-@function zindex($name) {
-  @return map-get($zindexes, $name)
-}
+@function zindex($name) { @return map-get($zindexes, $name); }
 
 @each $name, $index in $zindexes {
   %zi-#{$name},.zi-#{$name} { z-index: $index }

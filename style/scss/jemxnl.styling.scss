@@ -1,6 +1,10 @@
 @import 'imports/_vars';
 @import 'imports/_mixins';
 
+nav.small {
+
+}
+
 div.masthead,
 div.carousel {
   height: calc(100vh - 5.5rem);
@@ -8,5 +12,78 @@ div.carousel {
   @media screen and (max-width: size('m')) {
     height: calc(100vh - 3rem);
     margin-top: 3rem;
+  }
+}
+
+.post-list {
+  @include border-radius(.2rem);
+  position: relative;
+  max-width: 100%;
+  background-color: transparentize(theme('dark', 'bg'), .1);
+  overflow: hidden;
+  &.forum {
+    .cat-title h3 { color: color(5); }
+    .cat-posts div.post h4 strong { color: color(4); }
+  }
+  &.tutorials {
+    .cat-title h3 { color: color(2); }
+    .cat-posts div.post h4 strong { color: color(1); }
+  }
+  .cat-title {
+    position: relative;
+    padding: 1rem;
+    border-bottom: 1px solid white(3);
+    &:before {
+      content: 'Categorie:';
+      position: absolute;
+      top: .3rem;
+      left: .8rem;
+      font-size: .8rem;
+      color: white(6);
+    }
+    h3 { margin: 0; }
+  }
+  .info,
+  .ratings {
+    display: flex;
+    font-size: .8rem;
+    span {
+      display: flex;
+      align-items: center;
+      padding: .25rem;
+      i, em {
+        margin: 0 .3rem;
+        color: color(1);
+        font-weight: bold;
+      }
+    }
+  }
+  .ratings {
+    justify-content: flex-end;
+  }
+  .cat-posts {
+    div.post {
+      @include transition();
+      padding: .5rem 1rem;
+      border-bottom: 1px solid white(5);
+      cursor: pointer;
+      &:last-of-type { border-bottom: none; }
+      &:nth-of-type(odd) { background-color: white(1); }
+      &:nth-of-type(even) { background-color: white(3); }
+      &:hover {
+        background-color: white(5);
+        h4, span.excerpt { color: #fff; }
+        h4 strong { color: white(5); }
+      }
+      h4 {
+        margin: 0 0 .3rem 0;
+        font-size: .85rem;
+        color: white(7);
+      }
+      span.excerpt {
+        font-size: .8rem;
+        color: white(5);
+      }
+    }
   }
 }

@@ -13,6 +13,7 @@ function generate_menu() {
         'SCSS' => '#',
         'JavaScript' => '#',
         'PHP' => '#',
+        'Git' => '#'
       )
     ),
     'Snippets' => array(

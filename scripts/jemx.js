@@ -36,3 +36,27 @@ menuButton.addEventListener('click', function() {
   menuButton.classList.toggle('active');
   menuEl.classList.toggle('active');
 });
+
+let tachometers = document.querySelectorAll('.tachometer');
+tachometers.forEach( function(el) {
+  let rotation = 'rotate(' + (180 / (100 / parseInt(el.getAttribute('percent'))) - 45) + 'deg)',
+      duration = 500,
+      inner = el.children[1];
+      inner.animate(
+        [
+          { transform: 'rotate(-45deg)' },
+          { transform: rotation }
+        ], {
+          duration: duration,
+          animationIterationCount: 1
+        }
+      );
+      setTimeout(function() { inner.style.transform = rotation}, duration);
+});
+
+let iconCards = document.querySelectorAll('div.card.icon');
+iconCards.forEach( function( card ) {
+  let icon = card.querySelector('i');
+  card.onmouseover = (function() { icon.style.color = icon.getAttribute('hover'); });
+  card.onmouseout = (function() { icon.removeAttribute('style'); });
+});

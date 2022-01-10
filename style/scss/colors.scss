@@ -1,10 +1,18 @@
 @import 'imports/_vars';
 
 @each $name, $hex in $colors {
-  %txt-color-#{$name}, .txt-color-#{$name} { color: $hex!important }
-  %bg-color-#{$name}, .bg-color-#{$name} { background-color: $hex!important }
-  %border-color-#{$name}, .border-color-#{$name} { border-color: $hex!important }
+  .txt-c-#{$name} { color: $hex!important }
+  .bg-c-#{$name} { background-color: $hex!important }
+  .b-c-#{$name} { border-color: $hex!important }
 }
+
+.txt-dark { color: theme('dark', 'text')!important }
+.bg-dark { background-color: theme('dark', 'bg')!important }
+.b-dark { border-color: theme('dark', 'border')!important }
+
+.txt-light { color: theme('light', 'text')!important }
+.bg-light { background-color: theme('light', 'bg')!important }
+.b-light { border-color: theme('light', 'border')!important }
 
 %bg-white, .bg-white { background-color: #fff!important }
 %txt-white, .txt-white { color: #fff!important }

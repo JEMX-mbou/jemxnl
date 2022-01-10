@@ -1,6 +1,38 @@
 @import 'imports/_vars';
 @import 'imports/_mixins';
 
+nav {
+  div.logo,
+  div.logo-small {
+    @include transition();
+  }
+  div.logo {
+    overflow: hidden;
+    svg {
+      height: 3rem;
+    }
+  }
+  div.logo-small {
+    @extend %horcenter;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    padding: .2rem 1rem;
+    opacity: 0;
+    svg {
+      height: 100%;
+    }
+    @media screen and (min-width: size('m')) {
+      @include translateX(0);
+      left: 0;
+    }
+  }
+  &.small {
+    div.logo { height: 0; opacity: 0; }
+    div.logo-small { opacity: 1; }
+  }
+}
+
 div.masthead,
 div.carousel {
   height: calc(100vh - 5.5rem);
@@ -9,4 +41,162 @@ div.carousel {
     height: calc(100vh - 3rem);
     margin-top: 3rem;
   }
+}
+
+.post-list {
+  @include border-radius(.2rem);
+  position: relative;
+  max-width: 100%;
+  background-color: transparentize(theme('dark', 'bg'), .1);
+  overflow: hidden;
+  &.forum {
+    .cat-title h3 { color: color(5); }
+    .cat-posts div.post h4 strong { color: color(4); }
+  }
+  &.tutorials {
+    .cat-title h3 { color: color(2); }
+    .cat-posts div.post h4 strong { color: color(1); }
+  }
+  .cat-title {
+    position: relative;
+    padding: 1rem;
+    border-bottom: 1px solid white(3);
+    &:before {
+      content: 'Categorie:';
+      position: absolute;
+      top: .3rem;
+      left: .8rem;
+      font-size: .8rem;
+      color: white(6);
+    }
+    h3 { margin: 0; }
+  }
+  .info,
+  .ratings {
+    display: flex;
+    font-size: .8rem;
+    span {
+      display: flex;
+      align-items: center;
+      padding: .25rem;
+      i, em {
+        margin: 0 .3rem;
+        color: color(1);
+        font-weight: bold;
+      }
+    }
+  }
+  .ratings {
+    justify-content: flex-end;
+  }
+  .cat-posts {
+    div.post {
+      @include transition();
+      padding: .5rem 1rem;
+      border-bottom: 1px solid white(5);
+      cursor: pointer;
+      &:last-of-type { border-bottom: none; }
+      &:nth-of-type(odd) { background-color: white(1); }
+      &:nth-of-type(even) { background-color: white(3); }
+      &:hover {
+        background-color: white(5);
+        h4, span.excerpt { color: #fff; }
+        h4 strong { color: white(5); }
+      }
+      h4 {
+        margin: 0 0 .3rem 0;
+        font-size: .85rem;
+        color: white(7);
+      }
+      span.excerpt {
+        font-size: .8rem;
+        color: white(5);
+      }
+    }
+  }
+}
+
+.snippet {
+  position: relative;
+  width: 100%;
+  margin: .5rem 0;
+  h5.title {
+    width: fit-content;
+    padding: 1rem;
+    margin: 0;
+    background-color: lighten(theme('dark', 'bg'), 10%);
+    border-bottom: 1px solid theme('dark', 'border');
+    color: theme('dark', 'text');
+    strong {
+      color: color(4);
+      text-transform: uppercase;
+    }
+  }
+  pre[class*="language-"].line-numbers {
+    display: flex;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    background-color: theme('dark', 'bg');
+    code {
+      width: 100%;
+      padding: 1rem 3rem 1rem 4rem;
+      overflow: auto;
+      > span > span {
+        height: 1.5rem!important;
+      }
+      span.line-numbers-rows {
+        left: 0;
+        width: 3rem;
+        padding: 1rem 0;
+        background-color: black(2);
+      }
+    }
+    i.copy-snippet {
+      @include transition();
+      position: absolute;
+      top: 0;
+      right: .5rem;
+      width: 3rem;
+      padding: 1rem;
+      background-color: theme('dark', 'bg');
+      color: theme('dark', 'text');
+      cursor: pointer;
+      &:hover {
+        background-color: lighten(theme('dark', 'bg'), 10%);
+        color: color(3);
+      }
+    }
+    div.notification {
+      @include border-radius(0);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: fit-content;
+      border-width: 0 0 1px 0;
+      text-align: center;
+      z-index: 2;
+    }
+  }
+  @for $i from 1 through 10 {
+    &.l-#{$i} pre[class*="language-"] code {
+      $h: $i * 1.5rem;
+      height: calc(#{$h} + 1.5rem);
+    }
+  }
+}
+
+.card.tutorial {
+  h3 {
+    color: theme('light', 'text');
+    strong {
+      color: color(4);
+    }
+  }
+}
+
+section.tutorial {
+  padding-top: 6rem;
 }

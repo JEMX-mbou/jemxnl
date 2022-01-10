@@ -6,6 +6,7 @@
   </div>
   <div class="container">
     <div class="logo"><?=svg('jemx-dark-logo')?></div>
+    <div class="logo-small"><?=svg('jemx-graphic')?></div>
     <div class="menu mob-top">
       <?=generate_menu()?>
     </div>

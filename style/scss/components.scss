@@ -2,9 +2,9 @@
 @import 'imports/_mixins';
 
 /* width */
-::-webkit-scrollbar { width: .5rem; }
-::-webkit-scrollbar-track { background-color: theme('light', 'bg'); }
-::-webkit-scrollbar-thumb { background-color: theme('light', 'text'); }
+::-webkit-scrollbar { width: .5rem; height: .5rem; }
+::-webkit-scrollbar-track { background-color: darken(theme('light', 'text'), 5%); }
+::-webkit-scrollbar-thumb { background-color: darken(theme('light', 'bg'), 20%); }
 
 nav {
   position: fixed;
@@ -239,9 +239,6 @@ nav {
   &.right { justify-content: flex-end; }
   &.top { align-items: flex-start; }
   &.bottom { align-items: flex-end; }
-  &.h75 { height: 75vh; }
-  &.h50 { height: 50vh; }
-  &.h25 { height: 25vh; }
   div.carousel-item {
     @include transition($dur: 2s);
     position: absolute;
@@ -286,10 +283,17 @@ section {
   padding: 2rem 0;
   &.bg-light { background-color: theme('light', 'bg'); }
   &.bg-dark { background-color: theme('dark', 'bg'); }
+  &.gradient-dark-light {
+    @include vertical-gradient($col1: lighten(theme('dark', 'bg'), 20%), $col2: theme('light', 'bg'));
+  }
+  &.gradient-light-dark {
+    @include vertical-gradient($col1: theme('light', 'bg'), $col2: lighten(theme('dark', 'bg'), 20%));
+  }
 }
 
 .card {
   @include border-radius(.2rem);
+  @include transition();
   display: flex;
   width: 100%;
   height: 100%;
@@ -310,6 +314,25 @@ section {
     border-color: theme('dark', 'border');
     h2, h3, h4, h5, h6 {
       color: darken(theme('dark', 'text'), 40%);
+    }
+  }
+  &.icon {
+    i {
+      @include transition($prop: color);
+      color: theme('light', 'text');
+      font-size: 8rem;
+    }
+  }
+  &.link {
+    cursor: pointer;
+    * {
+      text-decoration: none!important;
+    }
+    &:hover {
+      background-color: theme('dark', 'bg');
+      h2, h3, h4, h5, h6, p {
+        color: theme('dark', 'text');
+      }
     }
   }
   img {
@@ -338,7 +361,7 @@ section {
     margin: 0;
   }
   @each $name, $color in $colors {
-    &.s-#{$name} {
+    &.c-#{$name} {
       background-color: lighten(color($name), 25%);
       color: darken(color($name), 40%);
       border: 1px solid color($name);
@@ -365,7 +388,24 @@ section {
   }
 }
 
-.prefooter,
+.notification {
+  @include box-shadow($ver: .3rem, $blur: .5rem, $color: black(5));
+  @include transition($prop: opacity);
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: fit-content;
+  margin: 0;
+  opacity: 0;
+  &.active {
+    opacity: 1;
+  }
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
 footer {
   width: 100%;
   padding: 2rem 0;
@@ -412,5 +452,82 @@ footer {
   background-color: theme('light', 'bg');
   &.dark {
     background-color: theme('dark', 'bg');
+  }
+}
+
+.img-bg {
+  position: relative;
+  overflow: hidden;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: zindex('background');
+    &.top,
+    &.bottom { height: auto; }
+    &.right,
+    &.left { width: 120%; }
+    &.top{ top: 0; object-position: top; }
+    &.right{ left: auto; right: 0; object-position: right; }
+    &.bottom { top: auto; bottom: 0; object-position: bottom; }
+    &.left{ left: 0; object-position: left; }
+  }
+  *:not(img) {
+    position: relative;
+    z-index: z-index('content');
+  }
+}
+
+.tachometer {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: 20vh!important;
+  height: calc(10vh + 2rem);
+  text-align: left;
+  label {
+    flex-direction: row;
+    font-size: 1rem;
+    justify-content: center;
+  }
+  &:after {
+    content: attr(percent);
+    position: absolute;
+    bottom: -.25rem;
+    width: 100%;
+    font-family: $titlefont;
+    text-align: center;
+  }
+  div.inner{
+    @include rotate(-45deg);
+    position: absolute;
+    top: 2rem;
+    width: 20vh!important;
+    height: 20vh;
+    animation-fill-mode: forwards;
+    &:before,
+    &:after {
+      @include border-radius(50%);
+      content: '';
+      position: absolute;
+      top: 1px;
+      width: calc(20vh - 3rem);
+      height: calc(20vh - 3rem);
+      border: 1.5rem solid;
+    }
+    &:before {
+      border-color: color(3);
+      border-top-color: transparent!important;
+      border-right-color: transparent!important;
+    }
+    &:after {
+      border-color: black(1);
+    }
+  }
+  @each $name, $color in $colors {
+    &.c-#{$name} div.inner:before { border-color: $color; }
   }
 }

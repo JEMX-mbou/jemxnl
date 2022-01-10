@@ -7,10 +7,8 @@
 
 html {
   font-size: $fs;
+  scroll-behavior: smooth;
   // Get Max Size (ms) from sizes map;
-
-
-
   $ms: nth(map-values($sizes), length($sizes));
   @each $s, $sw in $sizes {
     $htmlfs: round($fs - ($rs - ($sw / $ms) * $rs));
@@ -36,22 +34,32 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  width: 100%;
   font-family: $titlefont;
   line-height: 91%;
 }
 
 h1 { font-size: 3rem; color: color(1); }
-h2 { font-size: 2.5rem; color: color(3); }
+h2 { font-size: 2.5rem; color: color(5); }
 h3 { font-size: 1.9rem; color: color(4); }
-h4 { font-size: 1.4rem; color: color(5); }
-h5 { font-size: 1rem; color: color(3); }
-h6 { font-size: 1rem; color: color(4); }
+h4 { font-size: 1.4rem; color: color(3); }
+h5 { font-size: 1rem; color: color(1); }
+h6 { font-size: 1rem; color: color(2); }
 
-.center {text-align: center;}
+hr {
+  width: 100%;
+  margin: 1rem 0;
+  border: 0 solid theme('light','border');
+  &.dark { border: 0 solid theme('dark','border'); }
+  &.thin { border-top-width: 1px; }
+  &.light { border-top-width: 2px; }
+  &.thick { border-top-width: 3px; }
+}
 
 p {
-  line-height: 1.7rem;
+  width: 100%;
   margin: 0 0 1rem 0;
+  line-height: 1.7rem;
 }
 
 a {
@@ -97,15 +105,48 @@ blockquote {
 
 button,
 .btn {
+  @include box-shadow( $ver: .2rem, $blur: .2rem, $color: black(3));
+  @include transition();
+  display: inline-block;
   padding: .5rem 1rem;
   margin: .5rem 0;
-  font-size: 1.2rem;
   border-radius: .5rem;
-  box-shadow: 0 .2rem .2rem 0 rgba(0,0,0,.3);
   border: 2px solid transparent;
-  &.style1 { background-color: color(1); color: #fff; }
-  &.style2 { background-color: color(2); color: #fff; }
-  &.style3 { background-color: color(3); color: #fff; }
+  font-size: 1.2rem;
+  text-decoration: none;
+  &.outline { background-color: transparent!important; border: 2px solid; }
+  &:hover {
+    @include box-shadow($ver: 0);
+  }
+  @each $name, $color in $colors {
+    $c: theme('light', 'bg');
+    $hc: darken(theme('light', 'bg'), 20%);
+
+    @if lightness($color) > 45 {
+      $c: theme('light', 'text');
+      $hc: darken($color, 10%);
+    } @else {
+      $c: theme('dark', 'text');
+      $hc: lighten($color, 10%);
+    }
+
+    &.c-#{$name} {
+      background-color: $color;
+      color: $c;
+      &:hover {
+        background-color: $hc;
+      }
+      &.outline {
+        color: $color;
+        border-color: $color;
+        &:hover {
+          background-color: white(5)!important;
+          color: $hc;
+          border-color: $hc;
+        }
+      }
+    }
+  }
 }
 
 table {

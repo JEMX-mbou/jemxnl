@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/JEMX-mbou/jemxnl#readme",
   "devDependencies": {
-    "node-sass": "^7.0.0"
+    "node-sass": "^7.0.0",
+    "prismjs": "^1.25.0"
   }
 }

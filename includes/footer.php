@@ -4,9 +4,29 @@
 <div class="prefooter">
   <div class="container">
     <div class="row">
-      <div class="col-12">
-        <p>Ik vind het altijd wel fijn om wat muziek aan te zetten tijdens de les.<br>
-          Dus bij deze de link naar m'n Spotify profiel: <a href="spotify:https://open.spotify.com/user/1175450566?si=83196d1db4f84bd4"><i class="bx bxl-spotify"></i>Jesse Malotaux</a> en alvast een playlist: <a href="spotify:https://open.spotify.com/playlist/2TSt28ml4Ok1QJuQMwHjs1?si=f4256957cde646f5"><i class="bx bxl-spotify"></i>The New Groove</a></p>
+      <div class="col-s-6 col-l-4 jc-center center my-4">
+        <h4 class="mt-0 mb-2 txt-col-2"><i class="bx bxs-like"></i>Likes</h4>
+        <p>Shown: total / next goal</p>
+        <div class="tachometer c-2" percent="91%">
+          <label><strong>6841</strong>/7500</label>
+          <div class="inner"></div>
+        </div>
+      </div>
+      <div class="col-s-6 col-l-4 jc-center center my-4">
+        <h4 class="mt-0 mb-2 txt-col-3"><i class="bx bxs-copy"></i>Copies</h4>
+        <p>Shown: total / next goal</p>
+        <div class="tachometer c-3" percent="76%">
+          <label><strong>11478</strong>/1500</label>
+          <div class="inner"></div>
+        </div>
+      </div>
+      <div class="col-s-6 col-l-4 jc-center center my-4">
+        <h4 class="mt-0 mb-2 txt-col-5"><i class="bx bxs-hand-up"></i>Clicks</h4>
+        <p>Shown: total / next goal</p>
+        <div class="tachometer c-5" percent="25%">
+          <label><strong>6841</strong>/7500</label>
+          <div class="inner"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -24,13 +44,11 @@
       </div>
 
       <div class="col-s-12 col-m-4">
-        <h3>Newsletter</h3>
-        <p>Fill in your e-mail address to subscribe to the newsletter.</p>
-        <form action="">
-          <label for="email">E-mail:</label>
-          <input type="text" name="email" id="email" placeholder="example@email.com" required />
-          <input type="submit" name="submit" id="submit" value="Submit" class="btn style1" />
-        </form>
+        <h3>Spotify</h3>
+        <p>Ik vind het altijd wel fijn om wat muziek aan te zetten tijdens de les.<br>
+          Dus hier mijn profiel en alvast een goede playlist.</p>
+        <p><a href="spotify:https://open.spotify.com/user/1175450566?si=83196d1db4f84bd4"><i class="bx bxl-spotify"></i>Jesse Malotaux</a><br>
+          <a href="spotify:https://open.spotify.com/playlist/2TSt28ml4Ok1QJuQMwHjs1?si=f4256957cde646f5"><i class="bx bxl-spotify"></i>The New Groove</a></p>
       </div>
 
       <div class="col-s-12 col-m-4">

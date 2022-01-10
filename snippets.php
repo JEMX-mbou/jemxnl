@@ -2,29 +2,56 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
     <title>JEMX | Snippets</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;1,200&family=Space+Mono:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
-    <link rel="stylesheet" href="style/css/jemx.min.css">
-    <link rel="stylesheet" href="style/css/jemxnl.styling.css">
+    <?php include 'includes/meta-links.php'; ?>
   </head>
   <body class="">
     <!-- start navbar -->
     <?php include 'includes/menu.php' ?>
     <!-- end navbar -->
 
+    <div class="masthead h-25">
+      <?=mastheadSnipTutImg('snippets')?>
+      <div class="content bg-c-3">
+        <h2 class="txt-dark"><?=(isset($_GET['lang']) ? $_GET['lang'] : 'Snippets')?></h2>
+      </div>
+    </div>
+    <?php
+      $snipDir = scandir('snippets');
+      $output = '';
+      $cI = 1;
+      foreach($snipDir as $lang) {
+        if (strpos($lang, '.') === false ) {
+
+          $output .= '<section class="bg-c-'.$cI.'">';
+          $output .= '<div class="row">';
+          $output .= '<div class="col-12">';
+          $output .= '<h2 class="mt-0 mb-2 txt-dark">'.$lang.'</h2>';
+          if ($cI < 5) $cI++;
+          else $cI = 1;
+          $langDir = scandir('snippets/'.$lang);
+
+          foreach($langDir as $file) {
+            if ( strpos($file, '.') !== 0 ) {
+              $name = substr($file, 0, strrpos($file, "."));
+              $title = str_replace('-', ' ', $name);
+              $output .= snippet(strtolower($lang), $name, $title);
+            }
+          }
+
+          $output .= '</section>';
+        }
+      }
+
+      echo $output;
+
+    ?>
 
     <!-- start footer -->
     <?php include 'includes/footer.php' ?>
     <!-- end footer -->
-    <script type="text/javascript" src="scripts/jemx.min.js">
-
-    </script>
+    <!-- start scripts and links -->
+    <?php include 'includes/scripts-links.php' ?>
+    <!-- end scripts and links -->
   </body>
 </html>

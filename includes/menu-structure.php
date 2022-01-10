@@ -8,12 +8,11 @@ function generate_menu() {
     'Tutorials' => array(
       'url' => 'tutorials.php',
       'subs' => array(
-        'HTML' => '#',
-        'CSS' => '#',
-        'SCSS' => '#',
-        'JavaScript' => '#',
-        'PHP' => '#',
-        'Git' => '#'
+        'HTML' => 'tutorials.php?lang=HTML',
+        'CSS' => 'tutorials.php?lang=CSS',
+        'JavaScript' => 'tutorials.php?lang=JS',
+        'PHP' => 'tutorials.php?lang=PHP',
+        'Git' => 'tutorials.php?lang=Git'
       )
     ),
     'Snippets' => array(

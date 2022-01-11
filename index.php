@@ -1,4 +1,4 @@
-<?php include 'includes/helpers.php'; ?>
+<?php require_once 'includes/helpers.php'; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>

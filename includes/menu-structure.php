@@ -1,8 +1,7 @@
 <?php
 
-function generate_menu() {
-
-  $menu = array(
+function getMenuStructure() {
+  return array(
     'Home' => 'index.php',
     'About me' => 'aboutme.php',
     'Tutorials' => array(
@@ -27,6 +26,11 @@ function generate_menu() {
     ),
     'FAQ' => 'faq.php'
   );
+}
+
+function generate_menu() {
+
+  $menu = getMenuStructure();
 
   $structureStr = '<ul>';
 
